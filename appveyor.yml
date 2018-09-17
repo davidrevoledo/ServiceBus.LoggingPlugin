@@ -1,0 +1,22 @@
+version: 1.0.{build}
+configuration: Release
+platform: Any CPU
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+build:
+  project: src/ServiceBus.LogginPlugin.csproj
+  verbosity: minimal
+notifications:
+- provider: Email
+  to:
+  - davidrevoledo@d-genix.com
+  subject: ServiceBus.LogginPlugin
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: false
