@@ -3,7 +3,7 @@ Plugin to log Service bus messages
 
 ### This is an add-in for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
 
-Allow to log messages before being sent by tracing or saving in an Azure Storage Account.
+Allow to log messages before being sent by tracing or saving in an Azure Storage Account Table.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/p8v6u2dud236vshu?svg=true)](https://ci.appveyor.com/project/davidrevoledo/servicebus-logginplugin)
 [![CodeFactor](https://www.codefactor.io/repository/github/davidrevoledo/servicebus.logginplugin/badge)](https://www.codefactor.io/repository/github/davidrevoledo/servicebus.logginplugin)
@@ -54,6 +54,19 @@ Configuration and registration
               });
       }));
 ```  
+
+Optional Configurations
+``` Custom Partition key ```
+``` Custom storage table name ```
+
+``` c#
+ configurations.ConfigureStorageAccount(information =>
+                {
+                    information.ConnectionString = "Insert Storage Connection string";
+                    information.PartitionKey = "YourPartitionKey";
+                    information.TableName = "YourTableName";
+                });
+```
 
 ### Simple Log Method
 
