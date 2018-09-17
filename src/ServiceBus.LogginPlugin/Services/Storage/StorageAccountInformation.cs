@@ -30,7 +30,7 @@ namespace ServiceBus.LogginPlugin.Services.Storage
     {
         internal StorageAccountInformation()
         {
-            
+            // internal ctor
         }
 
         /// <summary>

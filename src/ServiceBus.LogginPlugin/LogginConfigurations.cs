@@ -36,7 +36,7 @@ namespace ServiceBus.LogginPlugin
     {
         internal LogginConfigurations()
         {
-            
+            // internal ctor
         }
 
         /// <summary>
