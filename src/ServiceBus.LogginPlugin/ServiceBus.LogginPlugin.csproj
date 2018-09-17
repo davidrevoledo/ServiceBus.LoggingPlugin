@@ -10,6 +10,7 @@
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Inyector is licensed under the MIT License.</Copyright>
     <PackageTags>Servicebus Messaging LogginMessage Azure</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.1.0" />

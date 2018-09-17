@@ -1,16 +1,11 @@
-version: 1.0.{build}
-configuration: Release
-platform: Any CPU
-dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'
+  version: 1.0.{build}
+  configuration: Release
+  platform: Any CPU
+branches:
+  only:
+  - master
+image: Previous Visual Studio 2017
 build:
-  project: src/ServiceBus.LogginPlugin.csproj
   verbosity: minimal
 notifications:
 - provider: Email
