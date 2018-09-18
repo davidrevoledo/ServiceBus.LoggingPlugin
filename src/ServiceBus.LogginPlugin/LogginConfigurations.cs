@@ -25,6 +25,7 @@
 using System;
 using System.Text;
 using Microsoft.Azure.ServiceBus;
+using ServiceBus.LogginPlugin.Abstractions;
 using ServiceBus.LogginPlugin.Services.Storage;
 
 namespace ServiceBus.LogginPlugin
@@ -56,19 +57,9 @@ namespace ServiceBus.LogginPlugin
         public LogginType LogginType { get; set; } = LogginType.None;
 
         /// <summary>
-        ///     Service Provider to Resolve a Custom ILogginService by any Service Locator used by the application
+        ///     Custom Loggin Service
         /// </summary>
-        public IServiceProvider ServiceProvider { get; set; }
-
-        /// <summary>
-        ///     If the Loggin Type is Custom then this property
-        ///     Indicate the custom used Loggin Service to manipulate the Loggin operation
-        ///     If the Type is not parameter less then ServiceProvider Should Be configured otherwhise an exception will be
-        ///     thrown
-        ///     If the provided type not implement ILogginService then an exception will be
-        ///     thrown
-        /// </summary>
-        public Type CustomLogginService { get; set; }
+        public ILogginService CustomLogginService { get; set; }
 
         /// <summary>
         ///     If seted up this method will be called with each sent message in adition with the provided Service

@@ -110,11 +110,6 @@ Configuration and registration
       }
       
        queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+       queueClient.RegisterLogginService(new CustomLogginService());
 
-       queueClient.RegisteredPlugins.Add(new LogginPlugin(configurations =>
-       {
-            configurations.LogginType = LogginType.Custom;
-            configurations.ServiceProvider = _serviceProvider;
-            configurations.CustomLogginService = typeof(CustomLogginService);
-       }));
 ```      

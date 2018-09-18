@@ -27,7 +27,7 @@ using System.Reflection;
 using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
 
-namespace ServiceBus.LogginPlugin.Infraestructure
+namespace ServiceBus.LogginPlugin.Infrastructure
 {
     /// <summary>
     ///     Internal message extension methods
@@ -49,12 +49,13 @@ namespace ServiceBus.LogginPlugin.Infraestructure
             // systemProperties.EnqueuedTimeUtc = DateTime.UtcNow.AddMinutes(1);
             var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic |
                            BindingFlags.SetProperty;
-            var value = DateTime.UtcNow.AddMinutes(1);
+
             systemProperties.GetType().InvokeMember("EnqueuedTimeUtc", bindings, Type.DefaultBinder, systemProperties,
-                new object[] {value});
-            // workaround "ThrowIfNotReceived" by setting "SequenceNumber" value
+                new object[] { });
+
+            // workaround "ThrowIfNotReceived" by setting "SequenceNumber" value null
             systemProperties.GetType().InvokeMember("SequenceNumber", bindings, Type.DefaultBinder, systemProperties,
-                new object[] {1});
+                new object[] { });
 
             // message.systemProperties = systemProperties;
             bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty;

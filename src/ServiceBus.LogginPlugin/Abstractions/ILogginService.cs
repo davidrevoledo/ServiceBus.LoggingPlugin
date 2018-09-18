@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-using ServiceBus.LogginPlugin.Infraestructure;
+using ServiceBus.LogginPlugin.Infrastructure;
 
 namespace ServiceBus.LogginPlugin.Abstractions
 {
