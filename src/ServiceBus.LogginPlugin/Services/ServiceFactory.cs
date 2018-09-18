@@ -49,7 +49,10 @@ namespace ServiceBus.LogginPlugin.Services
                     return new StorageTableLogginService();
 
                 case LogginType.Custom:
-                    return CreateCustomService(configurations);
+                    if (configurations.CustomLogginService == null)
+                        throw new Exception("CustomLogginService should be configured to indicate what service use");
+
+                    return configurations.CustomLogginService;
 
                 default:
                 case LogginType.None:
@@ -57,24 +60,5 @@ namespace ServiceBus.LogginPlugin.Services
             }
         }
 
-        /// <summary>
-        ///     Create custom service
-        /// </summary>
-        /// <param name="configurations"></param>
-        /// <returns></returns>
-        private static ILogginService CreateCustomService(LogginConfigurations configurations)
-        {
-            if (configurations.ServiceProvider == null)
-                throw new Exception("ServiceProvider should be configured to use a Custom Loggin Service");
-
-            if (configurations.CustomLogginService == null)
-                throw new Exception("CustomLogginService should be configured to indicate what service use");
-
-            // check if the type implement ILogginService
-            if (!configurations.CustomLogginService.IsAssignableFrom(typeof(ILogginService)))
-                throw new Exception("CustomLogginService configured should implement ILogginService");
-
-            return (ILogginService) configurations.ServiceProvider.GetService(configurations.CustomLogginService);
-        }
     }
 }

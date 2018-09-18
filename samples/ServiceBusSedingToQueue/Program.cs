@@ -52,17 +52,8 @@ namespace ServiceBusSedingToQueue
 
             queueClient.RegisteredPlugins.Add(new LogginPlugin(configurations =>
             {
-                configurations.LogginType = LogginType.StorageTable;
-                configurations.SendInBackground = true;
-                configurations.ConfigureStorageAccount(information =>
-                    {
-                        information.ConnectionString = "Insert Storage Connection string";
-                    });
-                configurations.Log = message =>
-                {
-                    // you can handle manually the message here
-                    var m1 = message;
-                };
+                configurations.LogginType = LogginType.Custom;
+                configurations.CustomLogginService = new CustomLogginService();
             }));
 
             await SendMessagesAsync(10);
