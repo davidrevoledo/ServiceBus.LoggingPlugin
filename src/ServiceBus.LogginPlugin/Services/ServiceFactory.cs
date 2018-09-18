@@ -21,6 +21,7 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
+
 using System;
 using ServiceBus.LogginPlugin.Abstractions;
 using ServiceBus.LogginPlugin.Services.Storage;
@@ -42,23 +43,24 @@ namespace ServiceBus.LogginPlugin.Services
         {
             switch (configurations.LogginType)
             {
+                case LogginType _ when configurations.CustomLogginService != null:
+
+                    if (configurations.CustomLogginService == null)
+                        throw new Exception(
+                            "CustomLogginService should be configured to indicate what service to use.");
+
+                    return configurations.CustomLogginService;
+
                 case LogginType.Trace:
                     return new TraceLogginService();
 
                 case LogginType.StorageTable:
                     return new StorageTableLogginService();
 
-                case LogginType.Custom:
-                    if (configurations.CustomLogginService == null)
-                        throw new Exception("CustomLogginService should be configured to indicate what service use");
-
-                    return configurations.CustomLogginService;
-
                 default:
                 case LogginType.None:
                     return null;
             }
         }
-
     }
 }

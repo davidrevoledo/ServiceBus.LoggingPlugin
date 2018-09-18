@@ -10,7 +10,6 @@ namespace ServiceBusSedingToQueue
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public bool Disposed { get; set; }
