@@ -30,7 +30,7 @@ using Microsoft.Azure.ServiceBus;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Infraestructure;
+using ServiceBus.LogginPlugin.Infrastructure;
 
 //https://github.com/Azure/azure-service-bus-dotnet-plugins
 

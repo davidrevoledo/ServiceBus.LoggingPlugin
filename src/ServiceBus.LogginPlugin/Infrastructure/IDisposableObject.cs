@@ -21,20 +21,19 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
+
 using System;
 
-namespace ServiceBus.LogginPlugin.Infraestructure
+namespace ServiceBus.LogginPlugin.Infrastructure
 {
-    public static class IDisposableStateExtensions
+    /// <summary>
+    ///     Interface to extend IDisposable interface Indicating if the object is disposed
+    /// </summary>
+    public interface IDisposableState : IDisposable
     {
         /// <summary>
-        ///     Throw an exception if the object is diposed
+        ///     Indicate if the object is disposed
         /// </summary>
-        /// <param name="disposableState"></param>
-        public static void ThrowIfDisposed(this IDisposableState disposableState)
-        {
-            if (disposableState.Disposed)
-                throw new ObjectDisposedException($"{nameof(disposableState)} has been already disposed.");
-        }
+        bool Disposed { get; set; }
     }
 }

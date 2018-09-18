@@ -35,7 +35,7 @@ namespace ServiceBus.LogginPlugin
     {
         private LogginConfigurations _configurations;
         private ILogginService _logginService;
-        private IServiceFactory _serviceFactory;
+        private readonly IServiceFactory _serviceFactory;
 
         /// <summary>
         ///     Constructor
@@ -43,8 +43,9 @@ namespace ServiceBus.LogginPlugin
         /// <param name="configurationsDecorator">configuration action to allow users configure</param>
         public LogginPlugin(Action<LogginConfigurations> configurationsDecorator)
         {
-            InitializeConfigurations(configurationsDecorator);
+            _serviceFactory = new ServiceFactory();
 
+            InitializeConfigurations(configurationsDecorator);
             InitializeService();
         }
 
@@ -80,21 +81,6 @@ namespace ServiceBus.LogginPlugin
 
         private void InitializeService()
         {
-            // this enable testing or the service factory can be over written 
-            if (_configurations.ServiceProvider != null)
-                try
-                {
-                    _serviceFactory =
-                        (IServiceFactory)_configurations.ServiceProvider.GetService(typeof(IServiceFactory));
-                }
-                catch (Exception)
-                {
-                    // ignored
-                }
-
-            if (_serviceFactory == null)
-                _serviceFactory = new ServiceFactory();
-
             // finally create the client and set up configurations
             _logginService = _serviceFactory.CreateService(_configurations);
             _logginService?.SetConfigurations(_configurations);
