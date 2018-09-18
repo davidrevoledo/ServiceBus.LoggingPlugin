@@ -67,9 +67,9 @@ namespace ServiceBus.LogginPlugin
                 if (!_configurations.SendInBackground)
                     await _logginService.LogSentMessage(message);
                 else
-#pragma warning disable 4014
                     // fire and forget
-                    Task.Factory.StartNew(async () => await _logginService.LogSentMessage(message));
+#pragma warning disable 4014
+                    Task.Run(async () => await _logginService.LogSentMessage(message));
 #pragma warning restore 4014
             }
 
