@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="servicebusloggin.jpg" alt="Service bus Loggin Plugin" width="100"/>
+</p>
+
+
 # ServiceBus.LogginPlugin
 Plugin to log Service bus messages
 
