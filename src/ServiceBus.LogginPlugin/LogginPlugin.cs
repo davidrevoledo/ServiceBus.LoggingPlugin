@@ -75,7 +75,7 @@ namespace ServiceBus.LogginPlugin
 
             _configurations.Log?.Invoke(message);
 
-            return await base.BeforeMessageSend(message);
+            return message;
         }
 
         private void InitializeService()
@@ -85,7 +85,7 @@ namespace ServiceBus.LogginPlugin
                 try
                 {
                     _serviceFactory =
-                        (IServiceFactory) _configurations.ServiceProvider.GetService(typeof(IServiceFactory));
+                        (IServiceFactory)_configurations.ServiceProvider.GetService(typeof(IServiceFactory));
                 }
                 catch (Exception)
                 {
