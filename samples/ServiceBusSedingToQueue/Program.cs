@@ -28,6 +28,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Management;
 using ServiceBus.LogginPlugin;
+using ServiceBus.LogginPlugin.Services.Storage;
 
 namespace ServiceBusSedingToQueue
 {
@@ -49,7 +50,16 @@ namespace ServiceBusSedingToQueue
             queueClient =
                 new QueueClient(ServiceBusConnectionString, QueueName);
 
-            queueClient.RegisterLogginService(new CustomLogginService());
+            //queueClient.RegisterLogginService(new CustomLogginService());
+
+            queueClient.RegisterPlugin(new LogginPlugin(configurations =>
+            {
+                configurations.LogginType = LogginType.StorageTable;
+                configurations.ConfigureStorageAccount(information =>
+                    {
+                        information.ConnectionString = "Insert Storage Connection here";
+                    });
+            }));
 
             await SendMessagesAsync(10);
         }
