@@ -24,6 +24,7 @@
 
 using System;
 using Microsoft.Azure.ServiceBus;
+using ServiceBus.LogginPlugin.Abstractions;
 using ServiceBus.LogginPlugin.Services.Storage;
 
 namespace ServiceBus.LogginPlugin
@@ -31,15 +32,9 @@ namespace ServiceBus.LogginPlugin
     public interface ILogginConfigurations
     {
         /// <summary>
-        ///     If the Loggin Type is Custom then this property
-        ///     Indicate the custom used Loggin Service to manipulate the Loggin operation
-        ///     If the Type is not parameter less then ServiceProvider Should Be configured otherwhise an exception will be
-        ///     thrown
-        ///
-        ///     If the provided type not implement ILogginService then an exception will be
-        ///     thrown
+        ///     Custom Loggin Service
         /// </summary>
-        Type CustomLogginService { get; set; }
+        ILogginService CustomLogginService { get; set; }
 
         /// <summary>
         ///     If seted up this method will be called with each sent message in adition with the provided Service
@@ -50,11 +45,6 @@ namespace ServiceBus.LogginPlugin
         ///     Configuration type (Default Trace)
         /// </summary>
         LogginType LogginType { get; set; }
-
-        /// <summary>
-        ///     Service Provider to Resolve a Custom ILogginService by any Service Locator used by the application
-        /// </summary>
-        IServiceProvider ServiceProvider { get; set; }
 
         /// <summary>
         ///     Decoding message format

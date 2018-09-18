@@ -26,7 +26,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Infraestructure;
+using ServiceBus.LogginPlugin.Infrastructure;
 
 namespace ServiceBus.LogginPlugin.Services.Tracing
 {

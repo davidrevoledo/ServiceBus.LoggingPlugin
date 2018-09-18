@@ -21,6 +21,7 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
+
 using System;
 using ServiceBus.LogginPlugin.Abstractions;
 using ServiceBus.LogginPlugin.Services.Storage;
@@ -42,39 +43,24 @@ namespace ServiceBus.LogginPlugin.Services
         {
             switch (configurations.LogginType)
             {
+                case LogginType _ when configurations.CustomLogginService != null:
+
+                    if (configurations.CustomLogginService == null)
+                        throw new Exception(
+                            "CustomLogginService should be configured to indicate what service to use.");
+
+                    return configurations.CustomLogginService;
+
                 case LogginType.Trace:
                     return new TraceLogginService();
 
                 case LogginType.StorageTable:
                     return new StorageTableLogginService();
 
-                case LogginType.Custom:
-                    return CreateCustomService(configurations);
-
                 default:
                 case LogginType.None:
                     return null;
             }
-        }
-
-        /// <summary>
-        ///     Create custom service
-        /// </summary>
-        /// <param name="configurations"></param>
-        /// <returns></returns>
-        private static ILogginService CreateCustomService(LogginConfigurations configurations)
-        {
-            if (configurations.ServiceProvider == null)
-                throw new Exception("ServiceProvider should be configured to use a Custom Loggin Service");
-
-            if (configurations.CustomLogginService == null)
-                throw new Exception("CustomLogginService should be configured to indicate what service use");
-
-            // check if the type implement ILogginService
-            if (!configurations.CustomLogginService.IsAssignableFrom(typeof(ILogginService)))
-                throw new Exception("CustomLogginService configured should implement ILogginService");
-
-            return (ILogginService) configurations.ServiceProvider.GetService(configurations.CustomLogginService);
         }
     }
 }
