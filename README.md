@@ -120,7 +120,7 @@ Configuration and registration
 ```      
 
 ### Icon
-Created by [MarianaAlemanno](https://www.behance.net/mariana-alemanno)
+Created by [Mariana Alemanno](https://www.behance.net/mariana-alemanno)
 
 
 
