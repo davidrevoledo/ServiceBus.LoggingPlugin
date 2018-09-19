@@ -118,3 +118,10 @@ Configuration and registration
        queueClient.RegisterLogginService(new CustomLogginService());
 
 ```      
+
+### Icon
+Created by [MarianaAlemanno](https://www.behance.net/mariana-alemanno)
+
+
+
+
