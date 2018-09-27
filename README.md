@@ -4,7 +4,7 @@
 
 
 # ServiceBus.LogginPlugin
-Plugin to log Service bus messages
+Pluggin to log Service bus messages
 
 ### This is an add-in for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
 
