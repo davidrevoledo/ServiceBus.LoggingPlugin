@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="servicebusloggin.jpg" alt="Service bus Loggin Plugin" width="100"/>
+  <img src="servicebusloggin.jpg" alt="Service bus Loggin Pluggin" width="100"/>
 </p>
 
 
