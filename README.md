@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="servicebusloggin.jpg" alt="Service bus Loggin Pluggin" width="100"/>
+  <img src="servicebusloggin.jpg" alt="Service bus Loggin Plugin" width="100"/>
 </p>
 
 
-# ServiceBus.LogginPlugin
+# ServiceBus.LogginPluggin
 Pluggin to log Service bus messages
 
 ### This is an add-in for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
