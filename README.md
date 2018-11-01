@@ -122,6 +122,4 @@ Configuration and registration
 ### Icon
 Created by [Mariana Alemanno](https://www.behance.net/mariana-alemanno)
 
-
-
-
+Made with ❤ in [DGENIX](https://www.dgenix.com/)
