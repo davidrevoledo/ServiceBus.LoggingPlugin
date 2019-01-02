@@ -12,8 +12,8 @@ Allow to log messages before being sent by tracing or saving in an Azure Storage
 
 [![Build status](https://ci.appveyor.com/api/projects/status/p8v6u2dud236vshu?svg=true)](https://ci.appveyor.com/project/davidrevoledo/servicebus-logginplugin)
 [![CodeFactor](https://www.codefactor.io/repository/github/davidrevoledo/servicebus.logginplugin/badge)](https://www.codefactor.io/repository/github/davidrevoledo/servicebus.logginplugin)
-![NuGet](https://img.shields.io/nuget/dt/ServiceBus.LogginPlugin.svg)
-![NuGet](https://img.shields.io/nuget/v/ServiceBus.LogginPlugin.svg)
+![NuGet](https://img.shields.io/nuget/dt/ServiceBus.LoggingPlugin.svg)
+![NuGet](https://img.shields.io/nuget/v/ServiceBus.LoggingPlugin.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Nuget package
@@ -21,11 +21,11 @@ Allow to log messages before being sent by tracing or saving in an Azure Storage
 To Install from the Nuget Package Manager Console 
 
 ```sh
-PM > Install-Package ServiceBus.LogginPlugin 
-NET CLI - dotnet add package ServiceBus.LogginPlugin
-paket paket add ServiceBus.LogginPlugin
+PM > Install-Package ServiceBus.LoggingPlugin 
+NET CLI - dotnet add package ServiceBus.LoggingPlugin
+paket paket add ServiceBus.LoggingPlugin
 ```
-Available here https://www.nuget.org/packages/ServiceBus.LogginPlugin
+Available here https://www.nuget.org/packages/ServiceBus.LoggingPlugin
 
     
 ## Examples
