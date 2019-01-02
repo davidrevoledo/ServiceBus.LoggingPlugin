@@ -27,10 +27,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Management;
-using ServiceBus.LogginPlugin;
-using ServiceBus.LogginPlugin.Services.Storage;
+using ServiceBus.LoggingPlugin;
+using ServiceBus.LoggingPlugin.Services.Storage;
 
-namespace ServiceBusSedingToQueue
+namespace ServiceBusSendingToQueue
 {
     internal class Program
     {
@@ -50,11 +50,11 @@ namespace ServiceBusSedingToQueue
             queueClient =
                 new QueueClient(ServiceBusConnectionString, QueueName);
 
-            //queueClient.RegisterLogginService(new CustomLogginService());
+            //queueClient.RegisterLoggingService(new CustomLoggingService());
 
-            queueClient.RegisterPlugin(new LogginPlugin(configurations =>
+            queueClient.RegisterPlugin(new LoggingPlugin(configurations =>
             {
-                configurations.LogginType = LogginType.StorageTable;
+                configurations.LoggingType = LoggingType.StorageTable;
                 configurations.ConfigureStorageAccount(information =>
                     {
                         information.ConnectionString = "Insert Storage Connection here";

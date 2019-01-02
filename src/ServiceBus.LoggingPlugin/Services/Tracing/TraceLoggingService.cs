@@ -25,17 +25,17 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Infrastructure;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Infrastructure;
 
-namespace ServiceBus.LogginPlugin.Services.Tracing
+namespace ServiceBus.LoggingPlugin.Services.Tracing
 {
     /// <summary>
-    ///     Build in Service to perform trace loggin for messaging exchange
+    ///     Build in Service to perform trace logging for messaging exchange
     /// </summary>
-    public class TraceLogginService : ILogginService
+    public class TraceLoggingService : ILoggingService
     {
-        private ILogginConfigurations _configurations;
+        private ILoggingConfigurations _configurations;
 
         /// <summary>
         ///     Log a message in a Trace fashion
@@ -58,7 +58,7 @@ namespace ServiceBus.LogginPlugin.Services.Tracing
             return Task.CompletedTask;
         }
 
-        public void SetConfigurations(ILogginConfigurations configurations)
+        public void SetConfigurations(ILoggingConfigurations configurations)
         {
             _configurations = configurations;
         }
@@ -70,7 +70,7 @@ namespace ServiceBus.LogginPlugin.Services.Tracing
         public bool Disposed { get; set; }
 
         /// <summary>
-        ///     This enable the class to be exteneded for tracing purpose without having to replace completely
+        ///     This enable the class to be extended for tracing purpose without having to replace completely
         /// </summary>
         /// <param name="message"></param>
         protected virtual void TraceAdditionalInformation(Message message)

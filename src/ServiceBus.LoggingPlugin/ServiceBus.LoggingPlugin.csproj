@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <PackageId>ServiceBus.LogginPlugin</PackageId>
+    <PackageId>ServiceBus.LoggingPlugin</PackageId>
     <PackageVersion>1.0.1</PackageVersion>
     <Authors>David Revoledo (Deivit)</Authors>
     <Description>Log your message every where (Storage account default)</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageReleaseNotes>First release, this package is the successor of the package named ServiceBus.LogginPlugin</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Inyector is licensed under the MIT License.</Copyright>
-    <PackageTags>Servicebus Messaging LogginMessage Azure</PackageTags>
+    <PackageTags>Servicebus Messaging Logging Message Azure</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

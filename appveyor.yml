@@ -11,7 +11,7 @@ notifications:
 - provider: Email
   to:
   - davidrevoledo@d-genix.com
-  subject: ServiceBus.LogginPlugin
+  subject: ServiceBus.LoggingPlugin
   on_build_success: false
   on_build_failure: true
   on_build_status_changed: false

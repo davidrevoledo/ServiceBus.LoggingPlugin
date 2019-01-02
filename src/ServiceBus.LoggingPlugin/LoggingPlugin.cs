@@ -26,22 +26,22 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
-using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Services;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Services;
 
-namespace ServiceBus.LogginPlugin
+namespace ServiceBus.LoggingPlugin
 {
-    public class LogginPlugin : ServiceBusPlugin, IDisposable
+    public class LoggingPlugin : ServiceBusPlugin, IDisposable
     {
-        private LogginConfigurations _configurations;
-        private ILogginService _logginService;
+        private LoggingConfigurations _configurations;
+        private ILoggingService _loggingService;
         private readonly IServiceFactory _serviceFactory;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         /// <param name="configurationsDecorator">configuration action to allow users configure</param>
-        public LogginPlugin(Action<LogginConfigurations> configurationsDecorator)
+        public LoggingPlugin(Action<LoggingConfigurations> configurationsDecorator)
         {
             _serviceFactory = new ServiceFactory();
 
@@ -49,11 +49,11 @@ namespace ServiceBus.LogginPlugin
             InitializeService();
         }
 
-        public override string Name => nameof(LogginPlugin);
+        public override string Name => nameof(LoggingPlugin);
 
         public void Dispose()
         {
-            _logginService?.Dispose();
+            _loggingService?.Dispose();
         }
 
         /// <summary>
@@ -63,14 +63,14 @@ namespace ServiceBus.LogginPlugin
         /// <returns></returns>
         public override async Task<Message> BeforeMessageSend(Message message)
         {
-            if (_logginService != null)
+            if (_loggingService != null)
             {
                 if (!_configurations.SendInBackground)
-                    await _logginService.LogSentMessage(message);
+                    await _loggingService.LogSentMessage(message);
                 else
                     // fire and forget
 #pragma warning disable 4014
-                    Task.Run(async () => await _logginService.LogSentMessage(message));
+                    Task.Run(async () => await _loggingService.LogSentMessage(message));
 #pragma warning restore 4014
             }
 
@@ -82,17 +82,17 @@ namespace ServiceBus.LogginPlugin
         private void InitializeService()
         {
             // finally create the client and set up configurations
-            _logginService = _serviceFactory.CreateService(_configurations);
-            _logginService?.SetConfigurations(_configurations);
+            _loggingService = _serviceFactory.CreateService(_configurations);
+            _loggingService?.SetConfigurations(_configurations);
         }
 
         /// <summary>
         ///     Init internal configurations
         /// </summary>
         /// <param name="configurationsDecorator"></param>
-        private void InitializeConfigurations(Action<LogginConfigurations> configurationsDecorator)
+        private void InitializeConfigurations(Action<LoggingConfigurations> configurationsDecorator)
         {
-            _configurations = new LogginConfigurations(); // default configurations
+            _configurations = new LoggingConfigurations(); // default configurations
             configurationsDecorator.Invoke(_configurations);
         }
     }

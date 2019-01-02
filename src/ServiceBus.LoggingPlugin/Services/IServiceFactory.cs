@@ -21,9 +21,9 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
-using ServiceBus.LogginPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Abstractions;
 
-namespace ServiceBus.LogginPlugin.Services
+namespace ServiceBus.LoggingPlugin.Services
 {
     /// <summary>
     ///     Service factory interface
@@ -33,8 +33,8 @@ namespace ServiceBus.LogginPlugin.Services
         /// <summary>
         ///     Create service
         /// </summary>
-        /// <param name="configurations">configuration to determine wich service needs to be crated</param>
+        /// <param name="configurations">configuration to determine which service needs to be crated</param>
         /// <returns>The Service implementation null if is None</returns>
-        ILogginService CreateService(LogginConfigurations configurations);
+        ILoggingService CreateService(LoggingConfigurations configurations);
     }
 }

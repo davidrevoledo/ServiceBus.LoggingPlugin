@@ -24,7 +24,7 @@
 
 using System;
 
-namespace ServiceBus.LogginPlugin.Infrastructure
+namespace ServiceBus.LoggingPlugin.Infrastructure
 {
     /// <summary>
     ///     Interface to extend IDisposable interface Indicating if the object is disposed

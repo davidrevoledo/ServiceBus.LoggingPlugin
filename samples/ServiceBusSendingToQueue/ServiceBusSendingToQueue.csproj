@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ServiceBus.LogginPlugin\ServiceBus.LogginPlugin.csproj" />
+    <ProjectReference Include="..\..\src\ServiceBus.LoggingPlugin\ServiceBus.LoggingPlugin.csproj" />
   </ItemGroup>
 
 </Project>

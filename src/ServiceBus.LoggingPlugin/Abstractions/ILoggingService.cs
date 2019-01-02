@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-using ServiceBus.LogginPlugin.Infrastructure;
+using ServiceBus.LoggingPlugin.Infrastructure;
 
-namespace ServiceBus.LogginPlugin.Abstractions
+namespace ServiceBus.LoggingPlugin.Abstractions
 {
     /// <summary>
-    ///     Service interface to logg message actions
+    ///     Service interface to log message actions
     /// </summary>
-    public interface ILogginService : IDisposableState
+    public interface ILoggingService : IDisposableState
     { 
         /// <summary>
         ///     Log a sent message
@@ -20,6 +20,6 @@ namespace ServiceBus.LogginPlugin.Abstractions
         ///     Set Configurations to be used internally
         /// </summary>
         /// <param name="configurations"></param>
-        void SetConfigurations(ILogginConfigurations configurations);
+        void SetConfigurations(ILoggingConfigurations configurations);
     }
 }

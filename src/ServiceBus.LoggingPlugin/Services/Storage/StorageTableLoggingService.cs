@@ -29,22 +29,22 @@ using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
-using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Infrastructure;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Infrastructure;
 
 //https://github.com/Azure/azure-service-bus-dotnet-plugins
 
-namespace ServiceBus.LogginPlugin.Services.Storage
+namespace ServiceBus.LoggingPlugin.Services.Storage
 {
     /// <summary>
-    ///     Build in Service to perform loggin in azure storage table
+    ///     Build in Service to perform logging in azure storage table
     /// </summary>
-    public class StorageTableLogginService : ILogginService
+    public class StorageTableLoggingService : ILoggingService
     {
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
         private CloudTableClient _client;
         private int _disposeSignaled;
-        private ILogginConfigurations _logginConfigurations;
+        private ILoggingConfigurations _loggingConfigurations;
 
         /// <summary>
         ///     Log a message in a storage table
@@ -60,7 +60,7 @@ namespace ServiceBus.LogginPlugin.Services.Storage
 
             var tableReference = await GetTableReference();
 
-            var partition = _logginConfigurations.StorageAccountInformation.PartitionKey ??
+            var partition = _loggingConfigurations.StorageAccountInformation.PartitionKey ??
                             "messages";
 
             var newMessage = new MessageEntity
@@ -71,7 +71,7 @@ namespace ServiceBus.LogginPlugin.Services.Storage
                 MessageId = message.MessageId,
                 RowKey = Guid.NewGuid().ToString(),
                 JsonMessage = message.GetJson(),
-                Content = _logginConfigurations.Decoding?.Invoke(message.Body)
+                Content = _loggingConfigurations.Decoding?.Invoke(message.Body)
             };
 
             var insertOperation = TableOperation.Insert(newMessage);
@@ -86,11 +86,11 @@ namespace ServiceBus.LogginPlugin.Services.Storage
         ///     Set Configurations to be used internally
         /// </summary>
         /// <param name="configurations"></param>
-        public void SetConfigurations(ILogginConfigurations configurations)
+        public void SetConfigurations(ILoggingConfigurations configurations)
         {
-            _logginConfigurations = configurations;
+            _loggingConfigurations = configurations;
 
-            if (_logginConfigurations.StorageAccountInformation == null)
+            if (_loggingConfigurations.StorageAccountInformation == null)
                 throw new Exception(
                     "Storage account information is needed, please call ConfigureStorageAccount from the plugin configurations");
         }
@@ -116,7 +116,7 @@ namespace ServiceBus.LogginPlugin.Services.Storage
                 .ConfigureAwait(false);
             try
             {
-                var tableName = _logginConfigurations.StorageAccountInformation.TableName ??
+                var tableName = _loggingConfigurations.StorageAccountInformation.TableName ??
                                 $"messageslogs{DateTime.Now:MMddyyyy}";
                 var tableReference = _client.GetTableReference(tableName);
 
@@ -148,10 +148,10 @@ namespace ServiceBus.LogginPlugin.Services.Storage
 
             try
             {
-                if (_logginConfigurations == null)
+                if (_loggingConfigurations == null)
                     throw new Exception("Storage Configurations are null");
 
-                var connectionString = _logginConfigurations.StorageAccountInformation.ConnectionString;
+                var connectionString = _loggingConfigurations.StorageAccountInformation.ConnectionString;
                 var account = CloudStorageAccount.Parse(connectionString);
                 _client = account.CreateCloudTableClient();
             }
