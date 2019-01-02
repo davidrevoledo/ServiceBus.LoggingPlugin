@@ -21,31 +21,54 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
-namespace ServiceBus.LogginPlugin.Services.Storage
+
+using System;
+using System.Text;
+using Microsoft.Azure.ServiceBus;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Services.Storage;
+
+namespace ServiceBus.LoggingPlugin
 {
     /// <summary>
-    ///     Storage configurations 
+    ///     Logging configurations to decorate how messages are going to be logged
     /// </summary>
-    public class StorageAccountInformation 
+    public class LoggingConfigurations : ILoggingConfigurations
     {
-        internal StorageAccountInformation()
+        internal LoggingConfigurations()
         {
             // internal ctor
         }
 
         /// <summary>
-        ///     Connection string to connect to the storage account this have to able to perform write operations
+        ///     Is enabled then the log operation will be executed in background, but message loss is a risk
         /// </summary>
-        public string ConnectionString { get; set; }
+        public bool SendInBackground { get; set; }
 
         /// <summary>
-        ///     Table name to storage the message if not (messageslogsMMddyyyy) will be created as default
+        ///     Decoding message format
+        ///     Utf8 Encoding as default
         /// </summary>
-        public string TableName { get; set; }
+        public Func<byte[], string> Decoding { get; set; } = content => Encoding.UTF8.GetString(content);
 
         /// <summary>
-        ///     Partition name to be used with storage tables (messages) will be created as default
+        ///     Configuration type (Default None)
         /// </summary>
-        public string PartitionKey { get; set; }
+        public LoggingType LoggingType { get; set; } = LoggingType.None;
+
+        /// <summary>
+        ///     Custom Logging Service
+        /// </summary>
+        public ILoggingService CustomLoggingService { get; set; }
+
+        /// <summary>
+        ///     If set this method will be called with each sent message in addition with the provided Service
+        /// </summary>
+        public Action<Message> Log { get; set; }
+
+        /// <summary>
+        ///     Storage account information 
+        /// </summary>
+        public StorageAccountInformation StorageAccountInformation { get; set; }
     }
 }

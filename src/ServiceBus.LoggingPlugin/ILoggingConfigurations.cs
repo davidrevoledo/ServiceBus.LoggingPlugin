@@ -23,19 +23,43 @@
  */
 
 using System;
+using Microsoft.Azure.ServiceBus;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Services.Storage;
 
-namespace ServiceBus.LogginPlugin.Infrastructure
+namespace ServiceBus.LoggingPlugin
 {
-    public static class IDisposableStateExtensions
+    public interface ILoggingConfigurations
     {
         /// <summary>
-        ///     Throw an exception if the object is diposed
+        ///     Custom Logging Service
         /// </summary>
-        /// <param name="disposableState"></param>
-        public static void ThrowIfDisposed(this IDisposableState disposableState)
-        {
-            if (disposableState.Disposed)
-                throw new ObjectDisposedException($"{nameof(disposableState)} has been already disposed.");
-        }
+        ILoggingService CustomLoggingService { get; set; }
+
+        /// <summary>
+        ///     If seted up this method will be called with each sent message in addition with the provided Service
+        /// </summary>
+        Action<Message> Log { get; set; }
+
+        /// <summary>
+        ///     Configuration type (Default Trace)
+        /// </summary>
+        LoggingType LoggingType { get; set; }
+
+        /// <summary>
+        ///     Decoding message format
+        ///     Utf8 Encoding as default
+        /// </summary>
+        Func<byte[], string> Decoding { get; set; }
+
+        /// <summary>
+        ///     Is enabled then the log operation will be executed in background, but message loss is a risk
+        /// </summary>
+        bool SendInBackground { get; set; }
+
+        /// <summary>
+        ///     Storage account information 
+        /// </summary>
+        StorageAccountInformation StorageAccountInformation { get; set; }
     }
 }

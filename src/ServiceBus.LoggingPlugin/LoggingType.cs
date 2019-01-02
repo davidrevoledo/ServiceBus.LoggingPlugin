@@ -21,20 +21,13 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
-using Microsoft.WindowsAzure.Storage.Table;
-
-namespace ServiceBus.LogginPlugin.Services.Storage
+namespace ServiceBus.LoggingPlugin
 {
-    public class MessageEntity : TableEntity
+    public enum LoggingType
     {
-        public string MessageId { get; set; }
-
-        public string MessageSessionId { get; set; }
-
-        public string MessagePartitionKey { get; set; }
-
-        public string JsonMessage { get; set; }
-
-        public string Content { get; internal set; }
+        None,
+        Custom,
+        Trace,
+        StorageTable
     }
 }

@@ -9,7 +9,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Inyector is licensed under the MIT License.</Copyright>
-    <PackageTags>Servicebus Messaging LogginMessage Azure</PackageTags>
+    <PackageTags>Servicebus Messaging Logging Message Azure</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

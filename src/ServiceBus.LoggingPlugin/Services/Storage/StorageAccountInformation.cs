@@ -21,54 +21,31 @@
     SOFTWARE.
     // Project Lead - David Revoledo davidrevoledo@d-genix.com
  */
-
-using System;
-using System.Text;
-using Microsoft.Azure.ServiceBus;
-using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Services.Storage;
-
-namespace ServiceBus.LogginPlugin
+namespace ServiceBus.LoggingPlugin.Services.Storage
 {
     /// <summary>
-    ///     Loggin configurations to decorate how messages are going to be logged
+    ///     Storage configurations 
     /// </summary>
-    public class LogginConfigurations : ILogginConfigurations
+    public class StorageAccountInformation 
     {
-        internal LogginConfigurations()
+        internal StorageAccountInformation()
         {
             // internal ctor
         }
 
         /// <summary>
-        ///     Is enabled then the log operation will be executed in background, but message loss is a risk
+        ///     Connection string to connect to the storage account this have to able to perform write operations
         /// </summary>
-        public bool SendInBackground { get; set; }
+        public string ConnectionString { get; set; }
 
         /// <summary>
-        ///     Decoding message format
-        ///     Utf8 Encoding as default
+        ///     Table name to storage the message if not (messageslogsMMddyyyy) will be created as default
         /// </summary>
-        public Func<byte[], string> Decoding { get; set; } = content => Encoding.UTF8.GetString(content);
+        public string TableName { get; set; }
 
         /// <summary>
-        ///     Configuration type (Default None)
+        ///     Partition name to be used with storage tables (messages) will be created as default
         /// </summary>
-        public LogginType LogginType { get; set; } = LogginType.None;
-
-        /// <summary>
-        ///     Custom Loggin Service
-        /// </summary>
-        public ILogginService CustomLogginService { get; set; }
-
-        /// <summary>
-        ///     If seted up this method will be called with each sent message in adition with the provided Service
-        /// </summary>
-        public Action<Message> Log { get; set; }
-
-        /// <summary>
-        ///     Storage account information 
-        /// </summary>
-        public StorageAccountInformation StorageAccountInformation { get; set; }
+        public string PartitionKey { get; set; }
     }
 }

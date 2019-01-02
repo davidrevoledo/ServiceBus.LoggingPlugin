@@ -27,7 +27,7 @@ using System.Reflection;
 using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
 
-namespace ServiceBus.LogginPlugin.Infrastructure
+namespace ServiceBus.LoggingPlugin.Infrastructure
 {
     /// <summary>
     ///     Internal message extension methods

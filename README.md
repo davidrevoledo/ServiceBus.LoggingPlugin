@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="servicebusloggin.jpg" alt="Service bus Loggin Plugin" width="100"/>
+  <img src="servicebuslogging.jpg" alt="Service bus Logging Plugin" width="100"/>
 </p>
 
 
-# ServiceBus.LogginPlugin
-Pluggin to log Service bus messages
+# ServiceBus.LoggingPlugin
+Plugin to log Service bus messages
 
 ### This is an add-in for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
 
@@ -36,9 +36,9 @@ Configuration and registration
 ```c#
       queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
-      queueClient.RegisteredPlugins.Add(new LogginPlugin(configurations =>
+      queueClient.RegisteredPlugins.Add(new LoggingPlugin(configurations =>
       {
-          configurations.LogginType = LogginType.Trace;
+          configurations.LoggingType = LoggingType.Trace;
       }));
 ```        
 
@@ -49,9 +49,9 @@ Configuration and registration
 ```c#
       queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
-      queueClient.RegisteredPlugins.Add(new LogginPlugin(configurations =>
+      queueClient.RegisteredPlugins.Add(new LoggingPlugin(configurations =>
       {
-          configurations.LogginType = LogginType.StorageTable;
+          configurations.LoggingType = LoggingType.StorageTable;
           configurations.SendInBackground = true;
           configurations.ConfigureStorageAccount(information =>
               {
@@ -80,9 +80,9 @@ Configuration and registration
 ```c#
       queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
-      queueClient.RegisteredPlugins.Add(new LogginPlugin(configurations =>
+      queueClient.RegisteredPlugins.Add(new LoggingPlugin(configurations =>
       {
-          configurations.LogginType = LogginType.None;
+          configurations.LoggingType = LoggingType.None;
           configurations.Log = message =>
           {
               // you can handle manually the message here
@@ -96,7 +96,7 @@ Configuration and registration
 Configuration and registration
 
 ```c#
-      public class CustomLogginService : ILogginService
+      public class CustomLoggingService : ILoggingService
       {
           public void Dispose()
           {
@@ -115,7 +115,7 @@ Configuration and registration
       }
       
        queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
-       queueClient.RegisterLogginService(new CustomLogginService());
+       queueClient.RegisterLoggingService(new CustomLoggingService());
 
 ```      
 

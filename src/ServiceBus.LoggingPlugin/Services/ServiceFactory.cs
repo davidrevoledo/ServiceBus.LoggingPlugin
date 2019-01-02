@@ -23,11 +23,11 @@
  */
 
 using System;
-using ServiceBus.LogginPlugin.Abstractions;
-using ServiceBus.LogginPlugin.Services.Storage;
-using ServiceBus.LogginPlugin.Services.Tracing;
+using ServiceBus.LoggingPlugin.Abstractions;
+using ServiceBus.LoggingPlugin.Services.Storage;
+using ServiceBus.LoggingPlugin.Services.Tracing;
 
-namespace ServiceBus.LogginPlugin.Services
+namespace ServiceBus.LoggingPlugin.Services
 {
     /// <summary>
     ///     Service factory implementation
@@ -37,28 +37,28 @@ namespace ServiceBus.LogginPlugin.Services
         /// <summary>
         ///     Create service
         /// </summary>
-        /// <param name="configurations">configuration to determine wich service needs to be crated</param>
+        /// <param name="configurations">configuration to determine which service needs to be crated</param>
         /// <returns>The Service implementation null if is None</returns>
-        public ILogginService CreateService(LogginConfigurations configurations)
+        public ILoggingService CreateService(LoggingConfigurations configurations)
         {
-            switch (configurations.LogginType)
+            switch (configurations.LoggingType)
             {
-                case LogginType _ when configurations.CustomLogginService != null:
+                case LoggingType _ when configurations.CustomLoggingService != null:
 
-                    if (configurations.CustomLogginService == null)
+                    if (configurations.CustomLoggingService == null)
                         throw new Exception(
-                            "CustomLogginService should be configured to indicate what service to use.");
+                            "CustomloggingService should be configured to indicate what service to use.");
 
-                    return configurations.CustomLogginService;
+                    return configurations.CustomLoggingService;
 
-                case LogginType.Trace:
-                    return new TraceLogginService();
+                case LoggingType.Trace:
+                    return new TraceLoggingService();
 
-                case LogginType.StorageTable:
-                    return new StorageTableLogginService();
+                case LoggingType.StorageTable:
+                    return new StorageTableLoggingService();
 
                 default:
-                case LogginType.None:
+                case LoggingType.None:
                     return null;
             }
         }
